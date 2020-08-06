@@ -1,0 +1,71 @@
+{
+  "customCommand": {
+    "type": "text",
+    "label": "Shoutout Command",
+    "value": "!so",
+    "group": "General"
+  },
+  "notificationTime": {
+    "type": "slider",
+    "label": "Notification Duration (Seconds)",
+    "value": 6.8,
+    "min": 0,
+    "max": 10,
+    "step": 0.1,
+    "group": "General"
+  },
+  "shoutTopText": {
+    "type": "text",
+    "label": "Top Text",
+    "value": "[name]",
+    "group": "General"
+  },
+  "shoutBotText": {
+    "type": "text",
+    "label": "Bottom Text",
+    "value": "[random]",
+    "group": "General"
+  },
+  
+  "shoutAudio": {
+    "type": "sound-input",
+    "label": "Audio",
+    "group": "Audio"
+  },
+  "shoutAudioVolume": {
+    "type": "slider",
+    "label": "Audio Volume",
+    "value": 80,
+    "min": 0,
+    "max": 100,
+    "steps": 1,
+    "group":"Audio"  
+  },
+ 
+  "shoutVideo": {
+    "type": "video-input",
+    "label": "Video",
+    "group": "Video"
+  },
+  "shoutVideoVolume": {
+    "type": "slider",
+    "label": "Default Video Volume",
+    "value": 100,
+    "min": 0,
+    "max": 100,
+    "steps": 1,
+    "group": "Video"
+  },  
+  "shoutTop": {
+    "type": "text",
+    "label": "Distance from Top (%, px)",
+    "value": "20%",
+    "group": "Avatar"
+  },
+  "shoutLeft": {
+    "type": "text",
+    "label": "Distance from Left (%, px)",
+    "value": "500px",
+    "group": "Avatar"
+  }
+}
