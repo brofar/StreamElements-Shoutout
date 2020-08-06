@@ -79,7 +79,8 @@ window.addEventListener('onEventReceived', async (obj) => {
     q.add(target);
         
     // Brand spankin' new queue system to queue up
-    // shout outs so they don't happen consecutively.
+    // shout outs so they happen consecutively instead of 
+    // overriding each other.
     if(!q.isBusy()) {
       q.setBusy(true);
       while(!q.isEmpty()) {
