@@ -6,7 +6,7 @@
 1. Click the + symbol at the bottom of the page
 1. Static / Custom > Custom Widget
 1. Click Open Editor
-1. Copy and paste the contents of the files in this repository into their respective tabs
+1. Copy and paste the contents of the files in this repository (html.html, css.css, js.js, and fields.json) into their respective tabs in StreamElements
 1. Click Done
 1. Configure the shout out on the left hand menu
 
