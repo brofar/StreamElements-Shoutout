@@ -110,7 +110,8 @@
     "label": "Avatar Entrance Animation:",
     "value": "roll-in-blurred-top",
     "options": {
-      "roll-in-blurred-top": "roll-in-blurred-top"
+      "roll-in-blurred-top": "roll-in-blurred-top",
+      "swing-in-top-fwd": "swing-in-top-fwd"
     },
     "group": "Avatar"
   },
