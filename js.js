@@ -1,10 +1,10 @@
 // Create variables to represent StreamElements' pseudovariables
-const notificationTime = { notificationTime };
+const notificationTime = {notificationTime};
 const customCommand = '{customCommand}';
 const videoFile = "{shoutVideo}";
-const videoVolume = { shoutVideoVolume };
+const videoVolume = {shoutVideoVolume};
 const soundFile = "{shoutAudio}";
-const soundVolume = { shoutAudioVolume };
+const soundVolume = {shoutAudioVolume};
 const shoutTopText = "{shoutTopText}";
 const shoutBotText = "{shoutBotText}";
 
