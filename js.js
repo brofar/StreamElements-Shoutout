@@ -115,8 +115,8 @@ async function TwitchShoutOut(username) {
   // Get the user's avatar
   var avatar = GetAvatar(name);
 
-  var TopText = ReplacePseudoVariables(topString, username);
-  var BotText = ReplacePseudoVariables(botString, username);
+  var TopText = ReplacePseudoVariables(shoutTopText, username);
+  var BotText = ReplacePseudoVariables(shoutBotText, username);
 
   await ShoutOut(avatar, TopText, BotText);
   
