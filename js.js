@@ -133,9 +133,9 @@ async function ShoutOut(username) {
     SetText(BotText, text_sub);
 
     // Animate In
-    AnimateCSS(avatar_image, avatarEntranceClass);
-    AnimateCSS(text_main, textTopEntranceClass);
-    AnimateCSS(text_sub, textBotEntranceClass);
+    AnimateCSS(avatar_image, avatarEntranceClass, true);
+    AnimateCSS(text_main, textTopEntranceClass, true);
+    AnimateCSS(text_sub, textBotEntranceClass, true);
 
     await sleep(shoutoutDuration);
 
@@ -216,9 +216,17 @@ function SetImage(avatarURL, sizePercentage = 100, posFromTopPercentage = 0) {
 }
 
 // Add an animation class to an element
-function AnimateCSS(element, animationName) {
+function AnimateCSS(element, animationName, removeClassWhenDone = false) {
   debug(`Animating with ${animationName}.`);
   element.classList.add(animationName);
+  
+  if(removeClassWhenDone === true) {
+   // Add a one-time event listener to remove the class once the animation completes.
+   element.addEventListener("animationend", function() {
+     debug(`Added event listener for animation end.`);
+     removeClass(element, animationName);
+   }, {once : true});
+  }
 }
 
 function sleep(ms) {
@@ -235,9 +243,18 @@ function ResetForNextRun() {
   text_sub.innerHTML = '';
 
   //Remove the animation classes
-  avatar_image.className = '';
-  text_main.className = '';
-  text_sub.className = '';
+  removeClass(avatar_image);
+  removeClass(text_main);
+  removeClass(text_sub);
+}
+
+function removeClass(element, className="all") {
+  if(className == "all") {
+    //Remove all classes
+    element.className = '';
+  } else {
+    element.classList.remove(className);
+  }
 }
 
 function playAudio(sound, volume) {

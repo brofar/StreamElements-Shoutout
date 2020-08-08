@@ -32,7 +32,19 @@
     "label": "Top Text Entrance Animation:",
     "value": "tracking-in-contract-bck-top",
     "options": {
-      "tracking-in-contract-bck-top": "tracking-in-contract-bck-top"
+      "fade-in": "fade-in",
+      "focus-in-expand": "focus-in-expand",
+      "focus-in-expand-fwd": "focus-in-expand-fwd",
+      "focus-in-contract": "focus-in-contract",
+      "focus-in-contract-bck": "focus-in-contract-bck",
+      "roll-in-blurred-top": "roll-in-blurred-top",
+      "swing-in-top-fwd": "swing-in-top-fwd",
+      "text-focus-in": "text-focus-in",
+      "tracking-in-contract-bck-bottom": "tracking-in-contract-bck-bottom",
+      "tracking-in-contract-bck-top": "tracking-in-contract-bck-top",
+      "tracking-in-expand": "tracking-in-expand",
+      "tracking-in-expand-fwd": "tracking-in-expand-fwd",
+      "tracking-in-contract": "tracking-in-contract"
     },
     "group": "Text"
   },
@@ -50,7 +62,19 @@
     "label": "Bottom Text Entrance Animation:",
     "value": "tracking-in-contract-bck-bottom",
     "options": {
-      "tracking-in-contract-bck-bottom": "tracking-in-contract-bck-bottom"
+      "fade-in": "fade-in",
+      "focus-in-expand": "focus-in-expand",
+      "focus-in-expand-fwd": "focus-in-expand-fwd",
+      "focus-in-contract": "focus-in-contract",
+      "focus-in-contract-bck": "focus-in-contract-bck",
+      "roll-in-blurred-top": "roll-in-blurred-top",
+      "swing-in-top-fwd": "swing-in-top-fwd",
+      "text-focus-in": "text-focus-in",
+      "tracking-in-contract-bck-bottom": "tracking-in-contract-bck-bottom",
+      "tracking-in-contract-bck-top": "tracking-in-contract-bck-top",
+      "tracking-in-expand": "tracking-in-expand",
+      "tracking-in-expand-fwd": "tracking-in-expand-fwd",
+      "tracking-in-contract": "tracking-in-contract"
     },
     "group": "Text"
   },
@@ -110,8 +134,11 @@
     "label": "Avatar Entrance Animation:",
     "value": "roll-in-blurred-top",
     "options": {
+      "fade-in": "fade-in",
       "roll-in-blurred-top": "roll-in-blurred-top",
-      "swing-in-top-fwd": "swing-in-top-fwd"
+      "swing-in-top-fwd": "swing-in-top-fwd",
+      "tracking-in-contract-bck-bottom": "tracking-in-contract-bck-bottom",
+      "tracking-in-contract-bck-top": "tracking-in-contract-bck-top"
     },
     "group": "Avatar"
   },

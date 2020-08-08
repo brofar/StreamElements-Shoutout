@@ -1,126 +1,157 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 .center { 
-  margin: 0 auto; 
-  width: auto; 
-  height: 100%;
+ margin: 0 auto; 
+ width: auto; 
+ height: 100%;
 }
 
 /*Div*/
 #main_container {
-  position: absolute;
-  top: {shoutTop};
-  left: {shoutLeft};
-  min-width: 600px;
+ position: absolute;
+ min-width: 600px;
+ top: {shoutTop};
+ left: {shoutLeft};
 }
 
 #image {
-    z-index: 2;
-  	position: absolute;
-    width: 100%; 
-  	height: 100%;
-  	top: {{imageHeight}}%;
+ z-index: 2;
+ position: absolute;
+ width: 100%; 
+ height: 100%;
+ top: {{imageHeight}}%;
 }
 
 /*Div*/
 #video {
- 	width: 100%;
-    height: 100%;
-    position: absolute;
-    /*top: {{videoHeight}}%;*/
-    left: 0px;
-    z-index: 2;
-    background-size: cover;
-    background-repeat: no-repeat;
+ width: 100%;
+ height: 100%;
+ position: absolute;
+ /*top: {{videoHeight}}%;*/
+ left: 0px;
+ z-index: 2;
+ background-size: cover;
+ background-repeat: no-repeat;
 }
 
 #avatar_image {
-  	margin: 0 auto;
-  	z-index: 2;
-  	display: block;
-  	vertical-align: middle;
+ margin: 0 auto;
+ z-index: 2;
+ display: block;
+ vertical-align: middle;
 }
 
-#vid {  
-   	position: absolute; 
-    right: 0; 
-    bottom: 0;
-    min-width: auto; 
- 	min-height: {{defaultVideoSize}}%;
-    width: auto; 
-    height: {{defaultVideoSize}}%; 
-    z-index: 2;
-    background-size: cover;
-    overflow: hidden;
-    top: {{mainTextFontSize}}px;
-  	left: 50%;
-    transform: translate(-50%);
-  
+#vid { 
+ position: absolute; 
+ right: 0; 
+ bottom: 0;
+ min-width: auto; 
+ width: auto; 
+ z-index: 2;
+ background-size: cover;
+ overflow: hidden;
+ left: 50%;
+ transform: translate(-50%);
+ min-height: {{defaultVideoSize}}%;
+ height: {{defaultVideoSize}}%; 
+ top: {{mainTextFontSize}}px; 
 }
 
 #textMain {
-  	position: absolute;
-   	margin: 0 auto; 
-  	top: {{mainTextfontHeight}}%;
-	z-index: 3;
-    width: 100%;
-  	text-shadow: 4px 4px 4px #000000;
-	background-size: cover;
-  	line-height: 50px;
-  	font-family: 'Montserrat', sans-serif;
-   	font-weight: 700;
-  	color: #eb4559; 
-	font-size: 50px;
-	text-transform: uppercase;
-	text-align: center;
+ position: absolute;
+ margin: 0 auto; 
+ z-index: 3;
+ width: 100%;
+ text-shadow: 4px 4px 4px #000000;
+ background-size: cover;
+ line-height: 50px;
+ font-family: 'Montserrat', sans-serif;
+ font-weight: 700;
+ color: #eb4559; 
+ font-size: 50px;
+ text-transform: uppercase;
+ text-align: center;
+ top: {{mainTextfontHeight}}%;
 }
 
 #textSub {
-  	position: absolute;
-   	margin: 0 auto;
-  	top: 250px;
-  	line-height: 50px;
-	z-index: 3;
-  	font-family: 'Montserrat', sans-serif;
-   	font-weight: 700;
-  	color: #eb4559; 
-	text-align: center;
-	font-size: 50px;
-  	text-shadow: 4px 4px 4px #000000;
-	text-transform: uppercase;
-	background-size: cover;
-    width: 100%;
+ position: absolute;
+ margin: 0 auto;
+ top: 250px;
+ line-height: 50px;
+ z-index: 3;
+ font-family: 'Montserrat', sans-serif;
+ font-weight: 700;
+ color: #eb4559; 
+ text-align: center;
+ font-size: 50px;
+ text-shadow: 4px 4px 4px #000000;
+ text-transform: uppercase;
+ background-size: cover;
+ width: 100%;
 }
 
 .roll-in-blurred-top {
-	-webkit-animation: roll-in-blurred-top 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
-	        animation: roll-in-blurred-top 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+ animation: roll-in-blurred-top 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
 }
 
 .swing-in-top-fwd {
-  -webkit-animation:swing-in-top-fwd .6s cubic-bezier(.175,.885,.32,1.275) both;
-  animation:swing-in-top-fwd .6s cubic-bezier(.175,.885,.32,1.275) both
+ animation:swing-in-top-fwd .6s cubic-bezier(.175,.885,.32,1.275) both
 }
 
 .slide-out-blurred-top {
-	-webkit-animation: slide-out-blurred-top 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
-	        animation: slide-out-blurred-top 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
+ animation: slide-out-blurred-top 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
 }
 
 .tracking-in-contract-bck-top {
-	-webkit-animation: tracking-in-contract-bck-top 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-	        animation: tracking-in-contract-bck-top 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+ animation: tracking-in-contract-bck-top 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
 }
 
 .tracking-in-contract-bck-bottom {
-	-webkit-animation: tracking-in-contract-bck-bottom 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-	        animation: tracking-in-contract-bck-bottom 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+ animation: tracking-in-contract-bck-bottom 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
 }
 
 .text-blur-out {
-	-webkit-animation: text-blur-out 1.2s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-	        animation: text-blur-out 1.2s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+ animation: text-blur-out 1.2s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 }
+
+.fade-in {
+ animation: fade-in 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.tracking-in-expand {
+  animation: tracking-in-expand 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.tracking-in-expand-fwd {
+  animation: tracking-in-expand-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.tracking-in-contract {
+  animation: tracking-in-contract 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.text-focus-in {
+  animation: text-focus-in 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.focus-in-expand {
+  animation: focus-in-expand 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.focus-in-expand-fwd {
+  animation: focus-in-expand-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.focus-in-contract {
+  animation: focus-in-contract 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.focus-in-contract-bck {
+  animation: focus-in-contract-bck 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+
 
 /* ----------------------------------------------
  * Generated by Animista on 2020-8-2 11:7:31
@@ -134,37 +165,21 @@
  * animation roll-in-blurred-top
  * ----------------------------------------
  */
-@-webkit-keyframes roll-in-blurred-top {
-  0% {
-    -webkit-transform: translateY(-800px) rotate(-720deg);
-            transform: translateY(-800px) rotate(-720deg);
-    -webkit-filter: blur(50px);
-            filter: blur(50px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateY(0) rotate(0deg);
-            transform: translateY(0) rotate(0deg);
-    -webkit-filter: blur(0);
-            filter: blur(0);
-    opacity: 1;
-  }
-}
 @keyframes roll-in-blurred-top {
-  0% {
-    -webkit-transform: translateY(-800px) rotate(-720deg);
-            transform: translateY(-800px) rotate(-720deg);
-    -webkit-filter: blur(50px);
-            filter: blur(50px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateY(0) rotate(0deg);
-            transform: translateY(0) rotate(0deg);
-    -webkit-filter: blur(0);
-            filter: blur(0);
-    opacity: 1;
-  }
+ 0% {
+ -webkit-transform: translateY(-800px) rotate(-720deg);
+ transform: translateY(-800px) rotate(-720deg);
+ -webkit-filter: blur(50px);
+ filter: blur(50px);
+ opacity: 0;
+ }
+ 100% {
+ -webkit-transform: translateY(0) rotate(0deg);
+ transform: translateY(0) rotate(0deg);
+ -webkit-filter: blur(0);
+ filter: blur(0);
+ opacity: 1;
+ }
 }
 
 /**
@@ -172,45 +187,25 @@
  * animation slide-out-blurred-top
  * ----------------------------------------
  */
-@-webkit-keyframes slide-out-blurred-top {
-  0% {
-    -webkit-transform: translateY(0) scaleY(1) scaleX(1);
-            transform: translateY(0) scaleY(1) scaleX(1);
-    -webkit-transform-origin: 50% 0%;
-            transform-origin: 50% 0%;
-    -webkit-filter: blur(0);
-            filter: blur(0);
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: translateY(-1000px) scaleY(2) scaleX(0.2);
-            transform: translateY(-1000px) scaleY(2) scaleX(0.2);
-    -webkit-transform-origin: 50% 0%;
-            transform-origin: 50% 0%;
-    -webkit-filter: blur(40px);
-            filter: blur(40px);
-    opacity: 0;
-  }
-}
 @keyframes slide-out-blurred-top {
-  0% {
-    -webkit-transform: translateY(0) scaleY(1) scaleX(1);
-            transform: translateY(0) scaleY(1) scaleX(1);
-    -webkit-transform-origin: 50% 0%;
-            transform-origin: 50% 0%;
-    -webkit-filter: blur(0);
-            filter: blur(0);
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: translateY(-1000px) scaleY(2) scaleX(0.2);
-            transform: translateY(-1000px) scaleY(2) scaleX(0.2);
-    -webkit-transform-origin: 50% 0%;
-            transform-origin: 50% 0%;
-    -webkit-filter: blur(40px);
-            filter: blur(40px);
-    opacity: 0;
-  }
+ 0% {
+ -webkit-transform: translateY(0) scaleY(1) scaleX(1);
+ transform: translateY(0) scaleY(1) scaleX(1);
+ -webkit-transform-origin: 50% 0%;
+ transform-origin: 50% 0%;
+ -webkit-filter: blur(0);
+ filter: blur(0);
+ opacity: 1;
+ }
+ 100% {
+ -webkit-transform: translateY(-1000px) scaleY(2) scaleX(0.2);
+ transform: translateY(-1000px) scaleY(2) scaleX(0.2);
+ -webkit-transform-origin: 50% 0%;
+ transform-origin: 50% 0%;
+ -webkit-filter: blur(40px);
+ filter: blur(40px);
+ opacity: 0;
+ }
 }
 
 /**
@@ -218,37 +213,21 @@
  * animation tracking-in-contract-bck-top
  * ----------------------------------------
  */
-@-webkit-keyframes tracking-in-contract-bck-top {
-  0% {
-    letter-spacing: 1em;
-    -webkit-transform: translateZ(400px) translateY(-300px);
-            transform: translateZ(400px) translateY(-300px);
-    opacity: 0;
-  }
-  40% {
-    opacity: 0.6;
-  }
-  100% {
-    -webkit-transform: translateZ(0) translateY(0);
-            transform: translateZ(0) translateY(0);
-    opacity: 1;
-  }
-}
 @keyframes tracking-in-contract-bck-top {
-  0% {
-    letter-spacing: 1em;
-    -webkit-transform: translateZ(400px) translateY(-300px);
-            transform: translateZ(400px) translateY(-300px);
-    opacity: 0;
-  }
-  40% {
-    opacity: 0.6;
-  }
-  100% {
-    -webkit-transform: translateZ(0) translateY(0);
-            transform: translateZ(0) translateY(0);
-    opacity: 1;
-  }
+ 0% {
+ letter-spacing: 1em;
+ -webkit-transform: translateZ(400px) translateY(-300px);
+ transform: translateZ(400px) translateY(-300px);
+ opacity: 0;
+ }
+ 40% {
+ opacity: 0.6;
+ }
+ 100% {
+ -webkit-transform: translateZ(0) translateY(0);
+ transform: translateZ(0) translateY(0);
+ opacity: 1;
+ }
 }
 
 /**
@@ -256,37 +235,21 @@
  * animation tracking-in-contract-bck-bottom
  * ----------------------------------------
  */
-@-webkit-keyframes tracking-in-contract-bck-bottom {
-  0% {
-    letter-spacing: 1em;
-    -webkit-transform: translateZ(400px) translateY(300px);
-            transform: translateZ(400px) translateY(300px);
-    opacity: 0;
-  }
-  40% {
-    opacity: 0.6;
-  }
-  100% {
-    -webkit-transform: translateZ(0) translateY(0);
-            transform: translateZ(0) translateY(0);
-    opacity: 1;
-  }
-}
 @keyframes tracking-in-contract-bck-bottom {
-  0% {
-    letter-spacing: 1em;
-    -webkit-transform: translateZ(400px) translateY(300px);
-            transform: translateZ(400px) translateY(300px);
-    opacity: 0;
-  }
-  40% {
-    opacity: 0.6;
-  }
-  100% {
-    -webkit-transform: translateZ(0) translateY(0);
-            transform: translateZ(0) translateY(0);
-    opacity: 1;
-  }
+ 0% {
+ letter-spacing: 1em;
+ -webkit-transform: translateZ(400px) translateY(300px);
+ transform: translateZ(400px) translateY(300px);
+ opacity: 0;
+ }
+ 40% {
+ opacity: 0.6;
+ }
+ 100% {
+ -webkit-transform: translateZ(0) translateY(0);
+ transform: translateZ(0) translateY(0);
+ opacity: 1;
+ }
 }
 
 /**
@@ -294,25 +257,15 @@
  * animation text-blur-out
  * ----------------------------------------
  */
-@-webkit-keyframes text-blur-out {
-  0% {
-    -webkit-filter: blur(0.01);
-            filter: blur(0.01);
-  }
-  100% {
-    -webkit-filter: blur(12px) opacity(0%);
-            filter: blur(12px) opacity(0%);
-  }
-}
 @keyframes text-blur-out {
-  0% {
-    -webkit-filter: blur(0.01);
-            filter: blur(0.01);
-  }
-  100% {
-    -webkit-filter: blur(12px) opacity(0%);
-            filter: blur(12px) opacity(0%);
-  }
+ 0% {
+ -webkit-filter: blur(0.01);
+ filter: blur(0.01);
+ }
+ 100% {
+ -webkit-filter: blur(12px) opacity(0%);
+ filter: blur(12px) opacity(0%);
+ }
 }
 
  /* ----------------------------------------------
@@ -327,35 +280,208 @@
  * animation swing-in-top-fwd
  * ----------------------------------------
  */
-@-webkit-keyframes swing-in-top-fwd {
-  0% {
-    -webkit-transform: rotateX(-100deg);
-            transform: rotateX(-100deg);
-    -webkit-transform-origin: top;
-            transform-origin: top;
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: rotateX(0deg);
-            transform: rotateX(0deg);
-    -webkit-transform-origin: top;
-            transform-origin: top;
-    opacity: 1;
-  }
-}
 @keyframes swing-in-top-fwd {
-  0% {
-    -webkit-transform: rotateX(-100deg);
-            transform: rotateX(-100deg);
-    -webkit-transform-origin: top;
-            transform-origin: top;
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: rotateX(0deg);
-            transform: rotateX(0deg);
-    -webkit-transform-origin: top;
-            transform-origin: top;
-    opacity: 1;
-  }
+ 0% {
+ -webkit-transform: rotateX(-100deg);
+ transform: rotateX(-100deg);
+ -webkit-transform-origin: top;
+ transform-origin: top;
+ opacity: 0;
+ }
+ 100% {
+ -webkit-transform: rotateX(0deg);
+ transform: rotateX(0deg);
+ -webkit-transform-origin: top;
+ transform-origin: top;
+ opacity: 1;
+ }
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-8-8 16:3:4
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation fade-in
+ * ----------------------------------------
+ */
+@keyframes fade-in {
+ 0% {
+ opacity: 0;
+ }
+ 100% {
+ opacity: 1;
+ }
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-8-8 16:7:35
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation tracking-in-expand
+ * ----------------------------------------
+ */
+@keyframes tracking-in-expand {
+ 0% {
+ letter-spacing: -0.5em;
+ opacity: 0;
+ }
+ 40% {
+ opacity: 0.6;
+ }
+ 100% {
+ opacity: 1;
+ }
+}
+
+/**
+ * ----------------------------------------
+ * animation tracking-in-expand-fwd
+ * ----------------------------------------
+ */
+@keyframes tracking-in-expand-fwd {
+ 0% {
+ letter-spacing: -0.5em;
+ -webkit-transform: translateZ(-700px);
+ transform: translateZ(-700px);
+ opacity: 0;
+ }
+ 40% {
+ opacity: 0.6;
+ }
+ 100% {
+ -webkit-transform: translateZ(0);
+ transform: translateZ(0);
+ opacity: 1;
+ }
+}
+
+/**
+ * ----------------------------------------
+ * animation tracking-in-contract
+ * ----------------------------------------
+ */
+@keyframes tracking-in-contract {
+ 0% {
+ letter-spacing: 1em;
+ opacity: 0;
+ }
+ 40% {
+ opacity: 0.6;
+ }
+ 100% {
+ letter-spacing: normal;
+ opacity: 1;
+ }
+}
+
+/**
+ * ----------------------------------------
+ * animation text-focus-in
+ * ----------------------------------------
+ */
+@keyframes text-focus-in {
+ 0% {
+ -webkit-filter: blur(12px);
+ filter: blur(12px);
+ opacity: 0;
+ }
+ 100% {
+ -webkit-filter: blur(0px);
+ filter: blur(0px);
+ opacity: 1;
+ }
+}
+
+/**
+ * ----------------------------------------
+ * animation focus-in-expand
+ * ----------------------------------------
+ */
+@keyframes focus-in-expand {
+ 0% {
+ letter-spacing: -0.5em;
+ -webkit-filter: blur(12px);
+ filter: blur(12px);
+ opacity: 0;
+ }
+ 100% {
+ -webkit-filter: blur(0px);
+ filter: blur(0px);
+ opacity: 1;
+ }
+}
+
+/**
+ * ----------------------------------------
+ * animation focus-in-expand-fwd
+ * ----------------------------------------
+ */
+@keyframes focus-in-expand-fwd {
+ 0% {
+ letter-spacing: -0.5em;
+ -webkit-transform: translateZ(-800px);
+ transform: translateZ(-800px);
+ -webkit-filter: blur(12px);
+ filter: blur(12px);
+ opacity: 0;
+ }
+ 100% {
+ -webkit-transform: translateZ(0);
+ transform: translateZ(0);
+ -webkit-filter: blur(0);
+ filter: blur(0);
+ opacity: 1;
+ }
+}
+
+/**
+ * ----------------------------------------
+ * animation focus-in-contract
+ * ----------------------------------------
+ */
+@keyframes focus-in-contract {
+ 0% {
+ letter-spacing: 1em;
+ -webkit-filter: blur(12px);
+ filter: blur(12px);
+ opacity: 0;
+ }
+ 100% {
+ -webkit-filter: blur(0px);
+ filter: blur(0px);
+ opacity: 1;
+ }
+}
+
+/**
+ * ----------------------------------------
+ * animation focus-in-contract-bck
+ * ----------------------------------------
+ */
+@keyframes focus-in-contract-bck {
+ 0% {
+ letter-spacing: 1em;
+ -webkit-transform: translateZ(300px);
+ transform: translateZ(300px);
+ -webkit-filter: blur(12px);
+ filter: blur(12px);
+ opacity: 0;
+ }
+ 100% {
+ -webkit-transform: translateZ(12px);
+ transform: translateZ(12px);
+ -webkit-filter: blur(0);
+ filter: blur(0);
+ opacity: 1;
+ }
 }
