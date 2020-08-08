@@ -45,8 +45,11 @@ let messages = ["Probably a decent human.",
   "Their aura is strong."
 ];
 
-window.addEventListener('onWidgetLoad', (obj) => {
-
+window.addEventListener('onWidgetLoad', async (obj) => {
+  // Ready message, and also serves as a way to
+  // Test the animation choice in the SE editor.
+  let blackPng = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAIAAAD2HxkiAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEdSURBVHhe7cEBDQAAAMKg909tDjcgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4EgNIBgAAVgJZJIAAAAASUVORK5CYII=";
+  ShoutOut(blackPng, "Shout Out Loaded", "& ready to go.");
 });
 
 // Listen for an event on Twitch
@@ -100,21 +103,29 @@ window.addEventListener('onEventReceived', async (obj) => {
         debug(`Iterating Queue.`);
         // Do the shout out
         var streamer = q.first();
-        await ShoutOut(streamer);
+        await TwitchShoutOut(streamer);
       }
       q.setBusy(false);
     }
   }
 });
-
-async function ShoutOut(username) {
+async function TwitchShoutOut(username) {
   const name = username.toLowerCase();
 
   // Get the user's avatar
   var avatar = GetAvatar(name);
 
+  var TopText = ReplacePseudoVariables(topString, username);
+  var BotText = ReplacePseudoVariables(botString, username);
+
+  await ShoutOut(avatar, TopText, BotText);
+  
+  return Promise.resolve("success");
+}
+async function ShoutOut(imageUrl = null, TopText = shoutTopText, BotText = shoutBotText) {
+
   // If an avatar was found...
-  if (avatar) {
+  if (imageUrl) {
     //Play the video loaded in config
     if (videoFile !== null)
       playVideo(videoFile, videoVolume);
@@ -124,10 +135,7 @@ async function ShoutOut(username) {
       playAudio(soundFile, soundVolume);
 
     // Set the user's avatar into the img object
-    SetImage(avatar);
-
-    var TopText = ReplacePseudoVariables(shoutTopText, username);
-    var BotText = ReplacePseudoVariables(shoutBotText, username);
+    SetImage(imageUrl);
 
     SetText(TopText, text_main);
     SetText(BotText, text_sub);
@@ -221,9 +229,10 @@ function AnimateCSS(element, animationName, removeClassWhenDone = false) {
   element.classList.add(animationName);
   
   if(removeClassWhenDone === true) {
+   debug(`Added event listener for animation end.`);
+
    // Add a one-time event listener to remove the class once the animation completes.
    element.addEventListener("animationend", function() {
-     debug(`Added event listener for animation end.`);
      removeClass(element, animationName);
    }, {once : true});
   }
