@@ -1,12 +1,24 @@
-// Create variables to represent StreamElements' pseudovariables
+// Variables to represent StreamElements' pseudovariables
 const notificationTime = {notificationTime};
 const customCommand = '{customCommand}';
+
+// SE Media variables
 const videoFile = "{shoutVideo}";
 const videoVolume = {shoutVideoVolume};
 const soundFile = "{shoutAudio}";
 const soundVolume = {shoutAudioVolume};
+
+// SE Text variables
 const shoutTopText = "{shoutTopText}";
 const shoutBotText = "{shoutBotText}";
+
+// SE CSS class name variables
+const avatarEntranceClass =  "{avatarEntranceClass}";
+const avatarExitClass = "{avatarExitClass}";
+const textTopEntranceClass = "{textTopEntranceClass}";
+const textTopExitClass = "{textTopExitClass}";
+const textBotEntranceClass = "{textBotEntranceClass}";
+const textBotExitClass = "{textBotExitClass}";
 
 // Some global variables
 let debugOutput = false;
@@ -121,16 +133,16 @@ async function ShoutOut(username) {
     SetText(BotText, text_sub);
 
     // Animate In
-    AnimateCSS(avatar_image, "roll-in-blurred-top");
-    AnimateCSS(text_main, "tracking-in-contract-bck-top");
-    AnimateCSS(text_sub, "tracking-in-contract-bck-bottom");
+    AnimateCSS(avatar_image, avatarEntranceClass);
+    AnimateCSS(text_main, textTopEntranceClass);
+    AnimateCSS(text_sub, textBotEntranceClass);
 
     await sleep(shoutoutDuration);
 
     // Animate Out
-    AnimateCSS(avatar_image, "slide-out-blurred-top");
-    AnimateCSS(text_main, "text-blur-out");
-    AnimateCSS(text_sub, "text-blur-out");
+    AnimateCSS(avatar_image, avatarExitClass);
+    AnimateCSS(text_main, textTopExitClass);
+    AnimateCSS(text_sub, textBotExitClass);
   }
 
   // Wait for the exit animation to complete.

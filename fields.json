@@ -18,13 +18,50 @@
     "type": "text",
     "label": "Top Text",
     "value": "[name]",
-    "group": "General"
+    "group": "Text"
   },
   "shoutBotText": {
     "type": "text",
     "label": "Bottom Text",
     "value": "[random]",
-    "group": "General"
+    "group": "Text"
+  },
+
+  "textTopEntranceClass": {
+    "type": "dropdown",
+    "label": "Top Text Entrance Animation:",
+    "value": "tracking-in-contract-bck-top",
+    "options": {
+      "tracking-in-contract-bck-top": "tracking-in-contract-bck-top"
+    },
+    "group": "Text"
+  },
+  "textTopExitClass": {
+    "type": "dropdown",
+    "label": "Top Text Exit Animation:",
+    "value": "text-blur-out",
+    "options": {
+      "text-blur-out": "text-blur-out"
+    },
+    "group": "Text"
+  },
+  "textBotEntranceClass": {
+    "type": "dropdown",
+    "label": "Bottom Text Entrance Animation:",
+    "value": "tracking-in-contract-bck-bottom",
+    "options": {
+      "tracking-in-contract-bck-bottom": "tracking-in-contract-bck-bottom"
+    },
+    "group": "Text"
+  },
+  "textBotExitClass": {
+    "type": "dropdown",
+    "label": "Bottom Text Exit Animation:",
+    "value": "text-blur-out",
+    "options": {
+      "text-blur-out": "text-blur-out"
+    },
+    "group": "Text"
   },
   
   "shoutAudio": {
@@ -66,6 +103,24 @@
     "type": "text",
     "label": "Distance from Left (%, px)",
     "value": "500px",
+    "group": "Avatar"
+  },
+  "avatarEntranceClass": {
+    "type": "dropdown",
+    "label": "Avatar Entrance Animation:",
+    "value": "roll-in-blurred-top",
+    "options": {
+      "roll-in-blurred-top": "roll-in-blurred-top"
+    },
+    "group": "Avatar"
+  },
+  "avatarExitClass": {
+    "type": "dropdown",
+    "label": "Avatar Exit Animation:",
+    "value": "slide-out-blurred-top",
+    "options": {
+      "slide-out-blurred-top": "slide-out-blurred-top"
+    },
     "group": "Avatar"
   }
 }
