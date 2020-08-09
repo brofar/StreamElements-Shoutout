@@ -33,9 +33,15 @@
     "options": {
       "fade-in": "fade-in",
       "roll-in-blurred-top": "roll-in-blurred-top",
-      "swing-in-top-fwd": "swing-in-top-fwd",
-      "tracking-in-contract-bck-bottom": "tracking-in-contract-bck-bottom",
-      "tracking-in-contract-bck-top": "tracking-in-contract-bck-top"
+      "slit-in-vertical" : "slit-in-vertical",
+      "scale-in-center" : "scale-in-center",
+      "scale-in-bottom" : "scale-in-bottom",
+      "scale-in-hor-center" : "scale-in-hor-center",
+      "scale-in-ver-center" : "scale-in-ver-center",
+      "rotate-in-center" : "rotate-in-center",
+      "rotate-in-2-fwd-cw" : "rotate-in-2-fwd-cw",
+      "swirl-in-fwd" : "swirl-in-fwd",
+      "swing-in-top-fwd": "swing-in-top-fwd"
     },
     "group": "Avatar"
   },
@@ -44,7 +50,18 @@
     "label": "Avatar Exit Animation:",
     "value": "slide-out-blurred-top",
     "options": {
-      "slide-out-blurred-top": "slide-out-blurred-top"
+      "slide-out-blurred-top": "slide-out-blurred-top",
+      "scale-out-center": "scale-out-center",
+      "scale-out-vertical": "scale-out-vertical",
+      "scale-out-horizontal": "scale-out-horizontal",
+      "scale-out-bottom": "scale-out-bottom",
+      "slit-out-vertical": "slit-out-vertical",
+      "roll-out-blurred-top": "roll-out-blurred-top",
+      "rotate-out-center": "rotate-out-center",
+      "rotate-out-2-fwd": "rotate-out-2-fwd",
+      "rotate-out-2-cw": "rotate-out-2-cw",
+      "swirl-out-bck": "swirl-out-bck",
+      "swing-out-top-fwd": "swing-out-top-fwd"
     },
     "group": "Avatar"
   },
@@ -86,7 +103,15 @@
     "label": "Exit Animation:",
     "value": "text-blur-out",
     "options": {
-      "text-blur-out": "text-blur-out"
+      "text-blur-out": "text-blur-out",
+      "tracking-out-contract": "tracking-out-contract",
+      "tracking-out-expand": "tracking-out-expand",
+      "blur-out-contract": "blur-out-contract",
+      "blur-out-expand": "blur-out-expand",
+      "tracking-out-contract-bck-bottom": "tracking-out-contract-bck-bottom",
+      "tracking-out-contract-bck-top": "tracking-out-contract-bck-top",
+      "tracking-out-contract-bck": "tracking-out-contract-bck",
+      "blur-out-contract-bck": "blur-out-contract-bck"
     },
     "group": "Text - Top"
   },
@@ -129,7 +154,15 @@
     "label": "Exit Animation:",
     "value": "text-blur-out",
     "options": {
-      "text-blur-out": "text-blur-out"
+      "text-blur-out": "text-blur-out",
+      "tracking-out-contract": "tracking-out-contract",
+      "tracking-out-expand": "tracking-out-expand",
+      "blur-out-contract": "blur-out-contract",
+      "blur-out-expand": "blur-out-expand",
+      "tracking-out-contract-bck-bottom": "tracking-out-contract-bck-bottom",
+      "tracking-out-contract-bck-top": "tracking-out-contract-bck-top",
+      "tracking-out-contract-bck": "tracking-out-contract-bck",
+      "blur-out-contract-bck": "blur-out-contract-bck"
     },
     "group": "Text - Bottom"
   },
