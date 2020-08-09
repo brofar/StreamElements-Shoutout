@@ -22,12 +22,13 @@
   },
   "shoutTopTextColor": {
     "type": "colorpicker",
-    "label": "Some color",
-    "value": "#eb4559"
+    "label": "Text color",
+    "value": "#eb4559",
+    "group": "Text - Top"
   },
   "textTopEntranceClass": {
     "type": "dropdown",
-    "label": "Top Text Entrance Animation:",
+    "label": "Entrance Animation:",
     "value": "tracking-in-contract-bck-top",
     "options": {
       "fade-in": "fade-in",
@@ -48,7 +49,7 @@
   },
   "textTopExitClass": {
     "type": "dropdown",
-    "label": "Top Text Exit Animation:",
+    "label": "Exit Animation:",
     "value": "text-blur-out",
     "options": {
       "text-blur-out": "text-blur-out"
@@ -62,9 +63,15 @@
     "value": "[random]",
     "group": "Text - Bottom"
   },
+  "shoutBotTextColor": {
+    "type": "colorpicker",
+    "label": "Text Color",
+    "value": "#eb4559",
+    "group": "Text - Bottom"
+  },
   "textBotEntranceClass": {
     "type": "dropdown",
-    "label": "Bottom Text Entrance Animation:",
+    "label": "Entrance Animation:",
     "value": "tracking-in-contract-bck-bottom",
     "options": {
       "fade-in": "fade-in",
@@ -85,7 +92,7 @@
   },
   "textBotExitClass": {
     "type": "dropdown",
-    "label": "Bottom Text Exit Animation:",
+    "label": "Exit Animation:",
     "value": "text-blur-out",
     "options": {
       "text-blur-out": "text-blur-out"

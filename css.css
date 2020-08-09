@@ -81,7 +81,7 @@
  z-index: 3;
  font-family: 'Montserrat', sans-serif;
  font-weight: 700;
- color: #eb4559; 
+ color: {{shoutBotTextColor}}; 
  text-align: center;
  font-size: 50px;
  text-shadow: 4px 4px 4px #000000;
