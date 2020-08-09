@@ -1,28 +1,7 @@
-// Variables to represent StreamElements' pseudovariables
-const notificationTime = {notificationTime};
-const customCommand = '{customCommand}';
-
-// SE Media variables
-const videoFile = "{shoutVideo}";
-const videoVolume = {shoutVideoVolume};
-const soundFile = "{shoutAudio}";
-const soundVolume = {shoutAudioVolume};
-
-// SE Text variables
-const shoutTopText = "{shoutTopText}";
-const shoutBotText = "{shoutBotText}";
-
-// SE CSS class name variables
-const avatarEntranceClass =  "{avatarEntranceClass}";
-const avatarExitClass = "{avatarExitClass}";
-const textTopEntranceClass = "{textTopEntranceClass}";
-const textTopExitClass = "{textTopExitClass}";
-const textBotEntranceClass = "{textBotEntranceClass}";
-const textBotExitClass = "{textBotExitClass}";
+let config;
 
 // Some global variables
 let debugOutput = false;
-let shoutoutDuration = notificationTime * 1000;
 let service = "twitch";
 let avatar_image = document.getElementById("avatar_image");
 let text_main = document.getElementById("textMain");
@@ -46,6 +25,10 @@ let messages = ["Probably a decent human.",
 ];
 
 window.addEventListener('onWidgetLoad', async (obj) => {
+
+  // Get the data from the StreamElements configuration fields
+  config = obj.detail.fieldData;
+  
   // Ready message, and also serves as a way to
   // Test the animation choice in the SE editor.
   let blackPng = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAIAAAD2HxkiAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEdSURBVHhe7cEBDQAAAMKg909tDjcgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4EgNIBgAAVgJZJIAAAAASUVORK5CYII=";
@@ -54,9 +37,6 @@ window.addEventListener('onWidgetLoad', async (obj) => {
 
 // Listen for an event on Twitch
 window.addEventListener('onEventReceived', async (obj) => {
-  // Event listener code used from René Chiquete's Awesome Shoutouts 1.3.
-  // https://www.youtube.com/watch?v=zGFhhFit9WQ
-
   // If it's not a chat event, return.
   if (obj.detail.listener !== "message") return;
 
@@ -84,7 +64,7 @@ window.addEventListener('onEventReceived', async (obj) => {
   let isBroadcaster = (badge1 === 'broadcaster');
   let isModUp = isMod || isBroadcaster;
 
-  if (command.toLowerCase() === customCommand && isModUp) {
+  if (command.toLowerCase() === config.customCommand && isModUp) {
 
     debug(`Received command "${command}" with target "${target}".`);
 
@@ -115,24 +95,24 @@ async function TwitchShoutOut(username) {
   // Get the user's avatar
   var avatar = GetAvatar(name);
 
-  var TopText = ReplacePseudoVariables(shoutTopText, username);
-  var BotText = ReplacePseudoVariables(shoutBotText, username);
+  var TopText = ReplacePseudoVariables(config.shoutTopText, username);
+  var BotText = ReplacePseudoVariables(config.shoutBotText, username);
 
   await ShoutOut(avatar, TopText, BotText);
   
   return Promise.resolve("success");
 }
-async function ShoutOut(imageUrl = null, TopText = shoutTopText, BotText = shoutBotText) {
+async function ShoutOut(imageUrl = null, TopText, BotText) {
 
   // If an avatar was found...
   if (imageUrl) {
     //Play the video loaded in config
-    if (videoFile !== null)
-      playVideo(videoFile, videoVolume);
+    if (config.shoutVideo !== null)
+      playVideo(config.shoutVideo, config.shoutVideoVolume);
 
     //Play the sound loaded in config
-    if (soundFile !== null)
-      playAudio(soundFile, soundVolume);
+    if (config.shoutAudio !== null)
+      playAudio(config.shoutAudio, config.shoutAudioVolume);
 
     // Set the user's avatar into the img object
     SetImage(imageUrl);
@@ -141,16 +121,16 @@ async function ShoutOut(imageUrl = null, TopText = shoutTopText, BotText = shout
     SetText(BotText, text_sub);
 
     // Animate In
-    AnimateCSS(avatar_image, avatarEntranceClass, true);
-    AnimateCSS(text_main, textTopEntranceClass, true);
-    AnimateCSS(text_sub, textBotEntranceClass, true);
+    AnimateCSS(avatar_image, config.avatarEntranceClass, true);
+    AnimateCSS(text_main, config.textTopEntranceClass, true);
+    AnimateCSS(text_sub, config.textBotEntranceClass, true);
 
-    await sleep(shoutoutDuration);
+    await sleep(config.notificationTime * 1000);
 
     // Animate Out
-    AnimateCSS(avatar_image, avatarExitClass);
-    AnimateCSS(text_main, textTopExitClass);
-    AnimateCSS(text_sub, textBotExitClass);
+    AnimateCSS(avatar_image, config.avatarExitClass);
+    AnimateCSS(text_main, config.textTopExitClass);
+    AnimateCSS(text_sub, config.textBotExitClass);
   }
 
   // Wait for the exit animation to complete.
