@@ -77,6 +77,12 @@
     "value": "#eb4559",
     "group": "Text - Top"
   },
+  "shoutTopTextFont": {
+    "type": "googleFont",
+    "label": "Font (Google Fonts)",
+    "value": "Montserrat",
+    "group": "Text - Top"
+  },
   "textTopEntranceClass": {
     "type": "dropdown",
     "label": "Entrance Animation:",
@@ -126,6 +132,12 @@
     "type": "colorpicker",
     "label": "Text Color",
     "value": "#eb4559",
+    "group": "Text - Bottom"
+  },
+  "shoutBotTextFont": {
+    "type": "googleFont",
+    "label": "Font (Google Fonts)",
+    "value": "Montserrat",
     "group": "Text - Bottom"
   },
   "textBotEntranceClass": {

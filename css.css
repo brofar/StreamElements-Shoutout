@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family={{shoutTopTextFont}}');
+@import url('https://fonts.googleapis.com/css?family={{shoutBotTextFont}}');
 
 .center { 
  margin: 0 auto; 
@@ -64,7 +65,7 @@
  text-shadow: 4px 4px 4px #000000;
  background-size: cover;
  line-height: 50px;
- font-family: 'Montserrat', sans-serif;
+ font-family: '{{shoutTopTextFont}}', sans-serif;
  font-weight: 700;
   font-size: 50px;
  text-transform: uppercase;
@@ -79,7 +80,7 @@
  top: 250px;
  line-height: 50px;
  z-index: 3;
- font-family: 'Montserrat', sans-serif;
+ font-family: '{{shoutBotTextFont}}', sans-serif;
  font-weight: 700;
  color: {{shoutBotTextColor}}; 
  text-align: center;

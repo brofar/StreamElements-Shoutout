@@ -1,5 +1,6 @@
 # StreamElements-Shoutout
 (Twitch Only)
+
 This is a custom widget for Stream Elements which displays a visual shout-out when a moderator or the broadcaster invokes the command which includes the target's Twitch avatar.
 
 ## Installation
