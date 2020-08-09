@@ -2,7 +2,6 @@ let config;
 
 // Some global variables
 let debugOutput = false;
-let service = "twitch";
 let avatar_image = document.getElementById("avatar_image");
 let text_main = document.getElementById("textMain");
 let text_sub = document.getElementById("textSub");
@@ -17,10 +16,10 @@ let messages = ["Probably a decent human.",
   "Has so much potential.",
   "Cute.",
   "Better than bubble wrap.",
-  "Has a smile",
-  "Inspiring",
-  "A gift to Twitch",
-  "A great parent",
+  "Has a smile.",
+  "Inspiring.",
+  "A gift to Twitch.",
+  "A great parent.",
   "Their aura is strong."
 ];
 
