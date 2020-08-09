@@ -18,15 +18,13 @@
     "type": "text",
     "label": "Top Text",
     "value": "[name]",
-    "group": "Text"
+    "group": "Text - Top"
   },
-  "shoutBotText": {
-    "type": "text",
-    "label": "Bottom Text",
-    "value": "[random]",
-    "group": "Text"
+  "shoutTopTextColor": {
+    "type": "colorpicker",
+    "label": "Some color",
+    "value": "#eb4559"
   },
-
   "textTopEntranceClass": {
     "type": "dropdown",
     "label": "Top Text Entrance Animation:",
@@ -46,7 +44,7 @@
       "tracking-in-expand-fwd": "tracking-in-expand-fwd",
       "tracking-in-contract": "tracking-in-contract"
     },
-    "group": "Text"
+    "group": "Text - Top"
   },
   "textTopExitClass": {
     "type": "dropdown",
@@ -55,7 +53,14 @@
     "options": {
       "text-blur-out": "text-blur-out"
     },
-    "group": "Text"
+    "group": "Text - Top"
+  },
+
+  "shoutBotText": {
+    "type": "text",
+    "label": "Bottom Text",
+    "value": "[random]",
+    "group": "Text - Bottom"
   },
   "textBotEntranceClass": {
     "type": "dropdown",
@@ -76,7 +81,7 @@
       "tracking-in-expand-fwd": "tracking-in-expand-fwd",
       "tracking-in-contract": "tracking-in-contract"
     },
-    "group": "Text"
+    "group": "Text - Bottom"
   },
   "textBotExitClass": {
     "type": "dropdown",
@@ -85,7 +90,7 @@
     "options": {
       "text-blur-out": "text-blur-out"
     },
-    "group": "Text"
+    "group": "Text - Bottom"
   },
   
   "shoutAudio": {
