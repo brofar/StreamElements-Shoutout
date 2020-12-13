@@ -2,7 +2,7 @@
 This is a custom widget for Stream Elements which displays a visual shout-out when a moderator or the broadcaster invokes the command which includes the target's Twitch avatar.
 
 ## Installation
-Head over to the [Releases page](https://github.com/brofar/SE-Shoutout/releases) and follow the instructions for the latest release.
+Head over to the [Releases page](https://github.com/brofar/Twitch-Shoutout/releases) and follow the instructions for the latest release.
 
 ## Notes
 * Incorporates a queue in case multiple shoutouts are made in quick succession.
