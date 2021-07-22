@@ -72,7 +72,7 @@ window.addEventListener('onEventReceived', async (obj) => {
     // Brand spankin' new queue system to queue up
     // shout outs so they happen consecutively instead of 
     // overriding each other.
-    if(!q.isBusy()) {
+    if (!q.isBusy()) {
       q.setBusy(true);
       while (!q.isEmpty()) {
         debug(`Iterating Queue.`);
@@ -88,13 +88,13 @@ async function TwitchShoutOut(username) {
   const name = username.toLowerCase();
 
   // Get the user's avatar
-  var avatar = GetAvatar(name);
+  var avatar = await GetAvatar(name);
 
   var TopText = ReplacePseudoVariables(config.shoutTopText, username);
   var BotText = ReplacePseudoVariables(config.shoutBotText, username);
 
   await ShoutOut(avatar, TopText, BotText);
-  
+
   return Promise.resolve("success");
 }
 async function ShoutOut(imageUrl = null, TopText, BotText) {
@@ -110,7 +110,7 @@ async function ShoutOut(imageUrl = null, TopText, BotText) {
       playAudio(config.shoutAudio, config.shoutAudioVolume);
 
     // Set the user's avatar into the img object
-    SetImage(imageUrl);
+    SetImage(imageUrl, 100, config.shoutTop, config.shoutLeft);
 
     SetText(TopText, text_main);
     SetText(BotText, text_sub);
@@ -155,44 +155,41 @@ function RandomMessage() {
   return messages[Math.floor(Math.random() * messages.length)];
 }
 
-function GetAvatar(username) {
-  var data = null;
-  var xhr = new XMLHttpRequest();
-  let result = false;
+async function GetAvatar(username) {
 
-  // Open remote web request to decapi.me to pull Twitch avatar
-  xhr.open("GET", "https://decapi.me/twitch/avatar/" + username, false);
-  xhr.setRequestHeader("accept", "application/json");
-  xhr.send(data);
+  let baseAvatarUrl = `https://decapi.me/twitch/avatar/`;
+  let res = await fetch(baseAvatarUrl + username).catch(console.warn);
+  let avatar = await res.text();
 
-  if (xhr.status == 400 || xhr.status == 404) {
-    return;
+  if (isValidHttpUrl(avatar)) {
+    debug(`Got response from decapi, Avatar Found = ${avatar}.`);
+    return avatar;
   }
-  if (xhr.status == 200) {
-    let avatarFound = !(xhr.responseText.includes("User not found") || xhr.responseText.includes("No user with the name"));
 
-    debug(`Got response from decapi, Avatar Found = ${avatarFound}.`);
-
-    if (avatarFound) {
-      debug(`Got avatar: ${xhr.responseText}`);
-
-      return xhr.responseText;
-    } else {
-      debug(`Avatar not found. Response from server: ${xhr.responseText}`);
-      return false;
-    }
-  } else {
-    return false;
-  }
+  debug(`Avatar not found.`);
+  return false;
 }
 
-function SetImage(avatarURL, sizePercentage = 100, posFromTopPercentage = 0) {
+function isValidHttpUrl(string) {
+  let url;
+
+  try {
+    url = new URL(string);
+  } catch (_) {
+    return false;
+  }
+
+  return url.protocol === "http:" || url.protocol === "https:";
+}
+
+function SetImage(avatarURL, sizePercentage = 100, posFromTopPercentage = 0, posFromLeftPercentage = 0) {
 
   avatar_image.setAttribute("src", avatarURL);
   debug(`Image src is set.`);
 
   // Position the image virtically
-  //document.getElementById("main_container").style.top = posFromTopPercentage + "%"
+  document.getElementById("main_container").style.top = posFromTopPercentage;
+  document.getElementById("main_container").style.left = posFromLeftPercentage;
 
   // Set the image size
   avatar_image.style.height = sizePercentage + "%";
@@ -202,14 +199,14 @@ function SetImage(avatarURL, sizePercentage = 100, posFromTopPercentage = 0) {
 function AnimateCSS(element, animationName, removeClassWhenDone = false) {
   debug(`Animating with ${animationName}.`);
   element.classList.add(animationName);
-  
-  if(removeClassWhenDone === true) {
-   debug(`Added event listener for animation end.`);
 
-   // Add a one-time event listener to remove the class once the animation completes.
-   element.addEventListener("animationend", function() {
-     removeClass(element, animationName);
-   }, {once : true});
+  if (removeClassWhenDone === true) {
+    debug(`Added event listener for animation end.`);
+
+    // Add a one-time event listener to remove the class once the animation completes.
+    element.addEventListener("animationend", function () {
+      removeClass(element, animationName);
+    }, { once: true });
   }
 }
 
@@ -232,8 +229,8 @@ function ResetForNextRun() {
   removeClass(text_sub);
 }
 
-function removeClass(element, className="all") {
-  if(className == "all") {
+function removeClass(element, className = "all") {
+  if (className == "all") {
     //Remove all classes
     element.className = '';
   } else {
