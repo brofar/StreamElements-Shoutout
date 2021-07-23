@@ -8,7 +8,8 @@ let text_sub = document.getElementById("textSub");
 
 let q = new Queue();
 
-let messages = ["Probably a decent human.",
+let messages = [
+  "Probably a decent human.",
   "A featherless biped.",
   "Cleans up well.",
   "This one is good.",
@@ -24,10 +25,8 @@ let messages = ["Probably a decent human.",
 ];
 
 window.addEventListener('onWidgetLoad', async (obj) => {
-
   // Get the data from the StreamElements configuration fields
   config = obj.detail.fieldData;
-
 });
 
 // Listen for an event on Twitch
@@ -41,11 +40,11 @@ window.addEventListener('onEventReceived', async (obj) => {
   // If the user is the StreamElements bot, return.
   if (data["displayName"] == "StreamElements") return;
 
-  // Command is the first argument of the text, and
-  // the shout out name is the second argument of the text
   let message = data["text"];
-  var command = message.split(" ")[0];
-  var target = message.split(" ")[1];
+  let words = message.split(" ");
+
+  // Command is the first argument of the text
+  var command = words.shift();
 
   // Use badges to determine whether the user is a mod/broadcaster
   // without needing to pull the user object. The mod/broadcaster
@@ -61,13 +60,17 @@ window.addEventListener('onEventReceived', async (obj) => {
 
   if (command.toLowerCase() === config.customCommand && isModUp) {
 
-    debug(`Received command "${command}" with target "${target}".`);
+    //iterate over all the targets
+    console.log(`Received shoutout with ${words.length} target(s).`);
+    for (var target of words) {
+      debug(`Received command "${command}" with target "${target}".`);
 
-    // Remove '@' from the name, in the case it was sent in that way from chat
-    target = target.replace(/[@]/, '');
+      // Remove '@' from the name, in the case it was sent in that way from chat
+      target = target.replace(/[@]/, '');
 
-    // Add the target to the queue
-    q.add(target);
+      // Add the target to the queue
+      q.add(target);
+    }
 
     // Brand spankin' new queue system to queue up
     // shout outs so they happen consecutively instead of 
