@@ -8,25 +8,16 @@ let text_sub = document.getElementById("textSub");
 
 let q = new Queue();
 
-let messages = [
-  "Probably a decent human.",
-  "A featherless biped.",
-  "Cleans up well.",
-  "This one is good.",
-  "Probably not a cannibal.",
-  "Has so much potential.",
-  "Cute.",
-  "Better than bubble wrap.",
-  "Has a smile.",
-  "Inspiring.",
-  "A gift to Twitch.",
-  "A great parent.",
-  "Their aura is strong."
-];
-
 window.addEventListener('onWidgetLoad', async (obj) => {
   // Get the data from the StreamElements configuration fields
   config = obj.detail.fieldData;
+
+  // Ready message, and also serves as a way to
+  // Test the animation choice in the SE editor.
+  if (config.showInit) {
+    let blackPng = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAIAAAD2HxkiAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEdSURBVHhe7cEBDQAAAMKg909tDjcgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4EgNIBgAAVgJZJIAAAAASUVORK5CYII=";
+    ShoutOut(blackPng, "Shout Out Loaded", "& ready to go.");
+  }
 });
 
 // Listen for an event on Twitch
@@ -102,6 +93,8 @@ async function TwitchShoutOut(username) {
 }
 async function ShoutOut(imageUrl = null, TopText, BotText) {
 
+  console.log('SHOUT OUT');
+
   // If an avatar was found...
   if (imageUrl) {
     //Play the video loaded in config
@@ -155,6 +148,10 @@ function ReplacePseudoVariables(text, target = "") {
 }
 
 function RandomMessage() {
+  // Get the random messages from the user config.
+  let randomText = config.randomText;
+  // Turn the messages into an array, splitting by new line.
+  let messages = randomText.split(/\r?\n/);
   return messages[Math.floor(Math.random() * messages.length)];
 }
 
