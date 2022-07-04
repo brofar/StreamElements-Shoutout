@@ -212,5 +212,12 @@
     "max": 100,
     "steps": 1,
     "group": "Video"
+  },
+  "randomText": {
+    "type": "text",
+    "label": "Random Phrases (One per line)",
+    "value": "Probably a decent human.\nA featherless biped.\nCleans up well.\nThis one is good.\nProbably not a cannibal.\nHas so much potential.\nCute.\nBetter than bubble wrap.\nHas a smile.\nInspiring.\nA gift to Twitch.\nA great parent.\nTheir aura is strong.",
+    "mode": "textarea",
+    "group": "Random Phrases"
   }
 }
