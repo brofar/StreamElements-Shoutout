@@ -168,10 +168,8 @@ async function GetDecapi(target, endpoint) {
   if(target.length == 0) return "";
 
   let apiurl = `https://decapi.me/twitch/${endpoint}/${target}`;
-  console.log(apiurl);
   let response = await fetch(apiurl);
   let data = await response.text();
-  console.log(data);
   
   return data;
 }
