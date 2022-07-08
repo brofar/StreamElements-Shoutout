@@ -177,16 +177,11 @@ async function GetDecapi(target, endpoint) {
 }
 
 async function GetAvatar(username) {
-
-  let baseAvatarUrl = `https://decapi.me/twitch/avatar/`;
-  let res = await fetch(baseAvatarUrl + username).catch(console.warn);
-  let avatar = await res.text();
-
+  let avatar = await GetDecapi(username, "avatar");
   if (isValidHttpUrl(avatar)) {
     debug(`Got response from decapi, Avatar Found = ${avatar}.`);
     return avatar;
   }
-
   debug(`Avatar not found.`);
   return false;
 }
