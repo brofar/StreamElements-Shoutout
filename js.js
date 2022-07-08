@@ -18,7 +18,6 @@ window.addEventListener('onWidgetLoad', async (obj) => {
     let blackPng = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAIAAAD2HxkiAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEdSURBVHhe7cEBDQAAAMKg909tDjcgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4EgNIBgAAVgJZJIAAAAASUVORK5CYII=";
     ShoutOut(blackPng, "Shout Out Loaded", "& ready to go.");
   }
-
 });
 
 // Listen for an event on Twitch
@@ -145,8 +144,12 @@ async function ReplacePseudoVariables(text, target = "") {
 
   // Have to handle api calls a bit differently because text.replace doesn't do async.
   if(text.indexOf('[followers]') > -1) {
-    let followNum = await GetFollowers(target);
-    text = text.replace('[followers]', followNum);
+    let result = await GetDecapi(target, "followcount");
+    text = text.replace('[followers]', result);
+  }
+  if(text.indexOf('[game]') > -1) {
+    let result = await GetDecapi(target, "game");
+    text = text.replace('[game]', result);
   }
 
   return Promise.resolve(text);
@@ -161,11 +164,14 @@ function RandomMessage() {
   return messages[Math.floor(Math.random() * messages.length)];
 }
 
-async function GetFollowers(target) {
+async function GetDecapi(target, endpoint) {
   if(target.length == 0) return "";
 
-  let response = await fetch(`https://decapi.me/twitch/followcount/${target}`);
-  let data = await response.json();
+  let apiurl = `https://decapi.me/twitch/${endpoint}/${target}`;
+  console.log(apiurl);
+  let response = await fetch(apiurl);
+  let data = await response.text();
+  console.log(data);
   
   return data;
 }
