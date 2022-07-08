@@ -18,6 +18,7 @@ window.addEventListener('onWidgetLoad', async (obj) => {
     let blackPng = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAIAAAD2HxkiAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEdSURBVHhe7cEBDQAAAMKg909tDjcgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4EgNIBgAAVgJZJIAAAAASUVORK5CYII=";
     ShoutOut(blackPng, "Shout Out Loaded", "& ready to go.");
   }
+
 });
 
 // Listen for an event on Twitch
@@ -84,16 +85,14 @@ async function TwitchShoutOut(username) {
   // Get the user's avatar
   var avatar = await GetAvatar(name);
 
-  var TopText = ReplacePseudoVariables(config.shoutTopText, username);
-  var BotText = ReplacePseudoVariables(config.shoutBotText, username);
+  var TopText = await ReplacePseudoVariables(config.shoutTopText, username);
+  var BotText = await ReplacePseudoVariables(config.shoutBotText, username);
 
   await ShoutOut(avatar, TopText, BotText);
 
   return Promise.resolve("success");
 }
 async function ShoutOut(imageUrl = null, TopText, BotText) {
-
-  console.log('SHOUT OUT');
 
   // If an avatar was found...
   if (imageUrl) {
@@ -139,12 +138,18 @@ function SetText(text, element) {
 
 // Replaces the pseudo variables in the
 // user input with actual variables we use.
-function ReplacePseudoVariables(text, target = "") {
+async function ReplacePseudoVariables(text, target = "") {
   debug(`Doing pseudo variable replacement on ${text}.`);
   text = text.replace('[name]', target);
   text = text.replace('[random]', RandomMessage());
 
-  return text;
+  // Have to handle api calls a bit differently because text.replace doesn't do async.
+  if(text.indexOf('[followers]') > -1) {
+    let followNum = await GetFollowers(target);
+    text = text.replace('[followers]', followNum);
+  }
+
+  return Promise.resolve(text);
 }
 
 function RandomMessage() {
@@ -152,7 +157,17 @@ function RandomMessage() {
   let randomText = config.randomText;
   // Turn the messages into an array, splitting by new line.
   let messages = randomText.split(/\r?\n/);
+  // Return a random message from the list
   return messages[Math.floor(Math.random() * messages.length)];
+}
+
+async function GetFollowers(target) {
+  if(target.length == 0) return "";
+
+  let response = await fetch(`https://decapi.me/twitch/followcount/${target}`);
+  let data = await response.json();
+  
+  return data;
 }
 
 async function GetAvatar(username) {
@@ -168,6 +183,10 @@ async function GetAvatar(username) {
 
   debug(`Avatar not found.`);
   return false;
+}
+
+async function GetRandomClip(username) {
+
 }
 
 function isValidHttpUrl(string) {
