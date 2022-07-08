@@ -8,8 +8,13 @@ Video walkthrough: https://www.youtube.com/watch?v=DsIgyJR32ZI
 
 ## Notes
 * Incorporates a queue in case multiple shoutouts are made in quick succession.
-* You can use the `[name]` placeholder to indicate the streamer's name.
-* The `[random]` placeholder picks from a list of random sayings (editable in the JS tab).
+
+## Placeholders
+You can use the following placeholders, which will be replaced with the indicated data when you perform a shoutout:
+* `[name]`: Their username.
+* `[random]`: Picks from a list of random sayings that you can configure in the sidebar.
+* `[followers]`: Their current follower count.
+* `[game]`: The game they were playing.
 
 
 ## Credits
