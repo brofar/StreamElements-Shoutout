@@ -1,8 +1,10 @@
 let config;
+let twitchToken = "";
 
 // Some global variables
-let debugOutput = false;
+let debugOutput = true;
 let avatar_image = document.getElementById("avatar_image");
+let clip_player = document.getElementById("clip");
 let text_main = document.getElementById("textMain");
 let text_sub = document.getElementById("textSub");
 
@@ -81,13 +83,23 @@ window.addEventListener('onEventReceived', async (obj) => {
 async function TwitchShoutOut(username) {
   const name = username.toLowerCase();
 
-  // Get the user's avatar
-  var avatar = await GetAvatar(name);
+  // Replace pseudovariables
+  var topText = await ReplacePseudoVariables(config.shoutTopText, username);
+  var botText = await ReplacePseudoVariables(config.shoutBotText, username);
 
-  var TopText = await ReplacePseudoVariables(config.shoutTopText, username);
-  var BotText = await ReplacePseudoVariables(config.shoutBotText, username);
+  if (config.shoutoutType == "avatar") {
+    debug('Avatar shoutout');
+    // Get the user's avatar
+    var avatar = await GetAvatar(name);
 
-  await ShoutOut(avatar, TopText, BotText);
+    // Do the shout out.
+    await ShoutOut(avatar, topText, botText);
+
+  } else if (config.shoutoutType == "clip") {
+    debug('Clip shoutout');
+    let clip = await GetRandomClip(name);
+    await VideoShoutOut(clip, topText, botText);
+  }
 
   return Promise.resolve("success");
 }
@@ -131,6 +143,48 @@ async function ShoutOut(imageUrl = null, TopText, BotText) {
   return Promise.resolve("success");
 }
 
+
+async function VideoShoutOut(clip, TopText, BotText) {
+  let clipUrl = clip.mp4;
+  let clipDuration = clip.duration;
+
+  // If a clip was found...
+  if (clipUrl) {
+    //Play the video loaded in config
+    if (config.shoutVideo !== null)
+      playVideo(config.shoutVideo, config.shoutVideoVolume);
+
+    //Play the sound loaded in config
+    if (config.shoutAudio !== null)
+      playAudio(config.shoutAudio, config.shoutAudioVolume);
+
+    // Set the user's avatar into the img object
+    SetVideo(clipUrl, 100, config.shoutTop, config.shoutLeft);
+    SetText(TopText, text_main);
+    SetText(BotText, text_sub);
+
+    // Animate In
+    AnimateCSS(video, config.avatarEntranceClass, true);
+    AnimateCSS(text_main, config.textTopEntranceClass, true);
+    AnimateCSS(text_sub, config.textBotEntranceClass, true);
+
+    await sleep(clipDuration * 1000);
+
+    // Animate Out
+    AnimateCSS(video, config.avatarExitClass);
+    AnimateCSS(text_main, config.textTopExitClass);
+    AnimateCSS(text_sub, config.textBotExitClass);
+  }
+
+  // Wait for the exit animation to complete.
+  await sleep(2000);
+
+  // Reset the element for the next time the command is used.
+  ResetForNextRun();
+
+  return Promise.resolve("success");
+}
+
 function SetText(text, element) {
   element.innerHTML = text;
 }
@@ -143,11 +197,11 @@ async function ReplacePseudoVariables(text, target = "") {
   text = text.replace('[random]', RandomMessage());
 
   // Have to handle api calls a bit differently because text.replace doesn't do async.
-  if(text.indexOf('[followers]') > -1) {
+  if (text.indexOf('[followers]') > -1) {
     let result = await GetDecapi(target, "followcount");
     text = text.replace('[followers]', result);
   }
-  if(text.indexOf('[game]') > -1) {
+  if (text.indexOf('[game]') > -1) {
     let result = await GetDecapi(target, "game");
     text = text.replace('[game]', result);
   }
@@ -165,12 +219,12 @@ function RandomMessage() {
 }
 
 async function GetDecapi(target, endpoint) {
-  if(target.length == 0) return "";
+  if (target.length == 0) return "";
 
   let apiurl = `https://decapi.me/twitch/${endpoint}/${target}`;
   let response = await fetch(apiurl);
   let data = await response.text();
-  
+
   return data;
 }
 
@@ -185,7 +239,19 @@ async function GetAvatar(username) {
 }
 
 async function GetRandomClip(username) {
+  let corsproxy = `https://www.whateverorigin.org/get?url=`
+  let apiurl = `https://twitch.guru/clipsapi.php?channel=${username}`;
+  debug(`Getting a random clip from ${apiurl}`);
+  //let response = await fetch(corsproxy + encodeURIComponent(apiurl));
+  let response = await fetch(corsproxy);
+  //let data = await response.json();
+  let http = response.status;
+  debug(`Random Clip Status: ${http}`);
+  let data = await response.text();
+  debug(data);
+  console.warn(response);
 
+  return Promise.resolve(data);
 }
 
 function isValidHttpUrl(string) {
@@ -213,6 +279,31 @@ function SetImage(avatarURL, sizePercentage = 100, posFromTopPercentage = 0, pos
   avatar_image.style.height = sizePercentage + "%";
 }
 
+async function SetVideo(clipUrl, sizePercentage = 100, posFromTopPercentage = 0, posFromLeftPercentage = 0) {
+// TODO: Volume
+  clip_player.setAttribute("src", clipUrl);
+  clip_player.muted = false;
+
+  debug(`Video src is set.`);
+
+  // Position the image virtically
+  document.getElementById("main_container").style.top = posFromTopPercentage;
+  document.getElementById("main_container").style.left = posFromLeftPercentage;
+
+  // Set the image size
+  clip_player.style.height = sizePercentage + "%";
+  await video.play();
+
+  return Promise.resolve(true);
+}
+
+video.onended = function () {
+  removeVid();
+  if (clips.length > 0) {
+    newPlayer();
+  }
+};
+
 // Add an animation class to an element
 function AnimateCSS(element, animationName, removeClassWhenDone = false) {
   debug(`Animating with ${animationName}.`);
@@ -236,6 +327,7 @@ function sleep(ms) {
 function ResetForNextRun() {
   // Remove the avatar image
   avatar_image.setAttribute("src", '');
+  clip_player.setAttribute("src", '');
 
   // Empty the text strings
   text_main.innerHTML = '';
@@ -243,6 +335,7 @@ function ResetForNextRun() {
 
   //Remove the animation classes
   removeClass(avatar_image);
+  removeClass(clip_player);
   removeClass(text_main);
   removeClass(text_sub);
 }
@@ -279,7 +372,7 @@ function playVideo(video, volume, size = 100) {
 
 function debug(text) {
   if (debugOutput == true)
-    console.log("DEBUG: " + text);
+    console.log("DEBUG: ", text);
 }
 
 /* QUEUE */
