@@ -38,18 +38,15 @@ window.addEventListener('onEventReceived', async (obj) => {
   var command = words.shift();
 
   // Use badges to determine whether the user is a mod/broadcaster
-  // without needing to pull the user object. The mod/broadcaster
-  // badge will be in slot 1 (of a possible 3) of the user's badges.
-  var badge1 = '';
+  // without needing to pull the user object.
+  let isAllowed = false;
+  if (data.badges) {
+    isAllowed = data.badges.some(badge =>
+      badge.type === 'moderator' || badge.type === 'broadcaster'
+    );
+  }
 
-  if (data["badges"][0]["type"])
-    badge1 = data["badges"][0]["type"];
-
-  let isMod = (badge1 === 'moderator');
-  let isBroadcaster = (badge1 === 'broadcaster');
-  let isModUp = isMod || isBroadcaster;
-
-  if (command.toLowerCase() === config.customCommand && isModUp) {
+  if (command.toLowerCase() === config.customCommand && isAllowed) {
 
     //iterate over all the targets
     console.log(`Received shoutout with ${words.length} target(s).`);
